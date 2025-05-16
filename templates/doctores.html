@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Doctores</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a href="/" class="brand-link">
+                    <i class="fas fa-heart"></i> Gestión Hospitalaria
+                </a>
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="/pacientes">Gestión de Pacientes</a></li>
+                <li><a href="/doctores">Gestión de Doctores</a></li>
+                <li><a href="/citas">Gestión de Citas Médicas</a></li>
+                <li><a href="/tratamientos">Gestión de Tratamientos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección para agregar doctores -->
+        <section>
+            <h2>Agregar Doctor</h2>
+            <form id="addDoctorForm">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos" required>
+                
+                <label for="licencia">Licencia:</label>
+                <input type="text" id="licencia" name="licencia" required>
+                
+                <label for="especialidad">Especialidad:</label>
+                <input type="text" id="especialidad" name="especialidad">
+                
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono">
+                
+                <button type="submit">Agregar</button>
+            </form>
+        </section>
+
+        <!-- Sección para visualizar doctores registrados -->
+        <section>
+            <h2>Doctores Registrados</h2>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <label for="filtroNombre">Buscar:</label>
+                <input 
+                    type="text" 
+                    id="filtroNombre" 
+                    placeholder="Filtrar por nombre o especialidad..." 
+                    oninput="filtrarDoctores()"
+                    style="padding: 5px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px;">
+            </div>
+            <table id="tabla_doctores">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Licencia</th>
+                        <th>Especialidad</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Los doctores se cargarán aquí dinámicamente -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Ventana Modal para editar doctores -->
+    <div id="modalActualizar" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button" onclick="cerrarModal()">&times;</span>
+            <h2>Actualizar Doctor</h2>
+                <div class="modal-body">
+                <form id="form_editar_doctor">
+                    <input type="hidden" id="idDoctor">
+
+                    <div class="form-group">
+                        <label for="nombre_editar">Nombre:</label>
+                        <input type="text" id="nombre_editar" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apellidos_editar">Apellidos:</label>
+                        <input type="text" id="apellidos_editar" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="licencia_editar">Licencia:</label>
+                        <input type="text" id="licencia_editar" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="especialidad_editar">Especialidad:</label>
+                        <input type="text" id="especialidad_editar" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono_editar">Teléfono:</label>
+                        <input type="text" id="telefono_editar" required>
+                    </div>
+        
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-save" onclick="guardarEdicion()">Guardar</button>
+                        <button type="button" class="btn btn-cancel" onclick="cerrarModal()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Sistema de Gestión Hospitalaria</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/scriptsdoctores.js') }}"></script>
+</body>
+</html>

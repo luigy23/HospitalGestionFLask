@@ -1,0 +1,524 @@
+/* Estilos generales del body */
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: linear-gradient(120deg, #f4f8fb 60%, #e8f6f1 100%);
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 800;
+    color: #2e7d5b;
+    margin: 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: #2e7d5b;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+}
+
+.section-desc {
+    font-size: 1.1rem;
+    color: #3a3a3a;
+    margin-bottom: 2.2rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Estilos del header (navbar) */
+header {
+    background-color: #2e7d5b;
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand .brand-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;  /* Alinea los elementos a la izquierda */
+}
+
+.navbar-menu li {
+    margin-right: 1.5rem; /* Separación entre los elementos, en lugar de margen izquierdo */
+   padding: 0.5rem 1rem;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-menu a:hover {
+    color: #6bcfa4;
+}
+
+/* Estilos principales para el contenido */
+main {
+    margin-top: 90px;
+    padding: 20px;
+}
+
+/* Sección bienvenida */
+.welcome {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* --- HERO INFO SECTION MODERNA --- */
+.info {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(77, 176, 139, 0.10), 0 1.5px 8px rgba(0,0,0,0.04);
+    padding: 3.5rem 2.5rem 3.5rem 2.5rem;
+    margin-bottom: 48px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    border: 1.5px solid #e0f2ea;
+}
+
+.info-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.info-content {
+    flex: 1 1 400px;
+    min-width: 280px;
+    text-align: left;
+}
+
+.info-title {
+    font-size: 2.8rem;
+    color: #2e7d5b;
+    font-weight: 800;
+    margin-bottom: 0.7rem;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+}
+
+.info-subtitle {
+    font-size: 1.35rem;
+    color: #2196f3;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.info-desc {
+    font-size: 1.13rem;
+    color: #3a3a3a;
+    margin-bottom: 0.7rem;
+    line-height: 1.7;
+}
+
+.btn-hero {
+    margin-top: 1.2rem;
+    background: linear-gradient(90deg, #2e7d5b 60%, #2196f3 100%);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 12px 32px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.10);
+    transition: background 0.3s, transform 0.2s;
+    border: none;
+    display: inline-block;
+}
+.btn-hero:hover {
+    background: linear-gradient(90deg, #2196f3 60%, #2e7d5b 100%);
+    transform: translateY(-2px) scale(1.03);
+}
+
+.info-image {
+    flex: 1 1 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 220px;
+}
+
+.info-image img {
+    max-width: 400px;
+    width: 100%;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(33, 150, 243, 0.13), 0 1.5px 8px rgba(0,0,0,0.04);
+    object-fit: cover;
+    border: 3px solid #e0f2ea;
+}
+
+@media (max-width: 900px) {
+    .info-hero {
+        flex-direction: column-reverse;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    .info-content, .info-image {
+        min-width: 0;
+        text-align: center;
+    }
+    .info-image img {
+        max-width: 90vw;
+    }
+}
+
+/* Estilos para las tarjetas de acción */
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.2rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.action-card {
+    background: rgba(255,255,255,0.85);
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(33, 150, 243, 0.07), 0 1.5px 8px rgba(77, 176, 139, 0.07);
+    padding: 28px 22px 22px 22px;
+    width: 260px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1.5px solid #e0f2ea;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.action-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(33, 150, 243, 0.13), 0 1.5px 8px rgba(77, 176, 139, 0.13);
+}
+.action-card h3 {
+    font-size: 1.18rem;
+    margin-bottom: 10px;
+    color: #2196f3;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+.action-card p {
+    font-size: 15px;
+    margin-bottom: 18px;
+    color: #444;
+}
+
+.btn-action {
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #2e7d5b 60%, #2196f3 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.07);
+    display: inline-block;
+}
+.btn-action:hover {
+    background: linear-gradient(90deg, #2196f3 60%, #2e7d5b 100%);
+    transform: translateY(-2px) scale(1.04);
+}
+
+/* Estilos del footer */
+footer {
+    text-align: center;
+    padding: 1.5rem 0 1rem 0;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e0f2ea;
+    margin-top: 2.5rem;
+}
+
+footer p {
+    margin: 0;
+    color: #2e7d5b;
+    font-weight: 600;
+}
+
+.footer-links {
+    margin-top: 0.5rem;
+}
+.footer-links a {
+    color: #2196f3;
+    margin: 0 0.5rem;
+    font-size: 1.3rem;
+    transition: color 0.2s;
+}
+.footer-links a:hover {
+    color: #2e7d5b;
+}
+
+/* Estilos adicionales para inputs y botones comunes */
+input, button {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+button {
+    background-color: #5cb85c;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+/* Tabla de datos */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px 30px;
+    border-radius: 10px;
+    min-width: 300px; /* Tamaño mínimo, puede ajustarse según el contenido */
+    max-width: 30%; /* Tamaño máximo relativo al contenedor */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaciado entre los elementos */
+}
+
+
+/* Estilos para el botón de cerrar en el modal */
+.close-button {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    float: right;
+    cursor: pointer;
+}
+
+/* Modal footer */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+/* Estilos para los botones en el modal */
+.btn-save {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-cancel {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Filtro de búsqueda */
+#filtroNombre {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 200px;
+    font-size: 14px;
+}
+
+#filtroNombre:focus {
+    outline: none;
+    border-color: #4CAF50; /* Cambia a verde cuando se enfoque */
+}
+
+/* Formulario (registrar paciente, etc.) */
+form {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Estilo para los campos de entrada */
+input[type="text"],
+input[type="date"],
+input[type="time"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border 0.3s ease-in-out;
+}
+
+/* Estilo al poner el cursor sobre los campos */
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+select:focus {
+    border-color: #4db08b;
+    outline: none;
+}
+
+/* Estilo para los botones */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-save {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-save:hover {
+    background-color: #45a049;
+}
+
+.btn-cancel {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #e53935;
+}
+
+/* Estilo para los selectores */
+select {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+}
+
+/* Añadir algo de espacio al pie del formulario */
+.modal-footer {
+    margin-top: 20px;
+}
+
+/* Estilo para la visualización del formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#filtroNombre {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 200px;
+    font-size: 14px;
+}
+
+#filtroNombre:focus {
+    outline: none;
+    border-color: #4CAF50; /* Cambia a verde cuando se enfoque */
+}
+
+main {
+    margin-top: 90px;
+}
+
+/* Estilos generales para el formulario */
+#form_editar_cita {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Estilo para cada grupo de formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.label1 {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.modal-body{
+    max-height: 400px; /* Ajusta la altura según sea necesario */
+    overflow-y: auto; /* Activa el scroll si el contenido excede */
+    padding: 15px;
+}
