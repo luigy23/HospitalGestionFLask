@@ -1,0 +1,131 @@
+# Cambios realizados en el proyecto
+
+## services/citas/create.py
+- Se agregó validación para evitar crear citas en fechas pasadas.
+- Se agregó validación para evitar duplicidad de citas en el mismo horario para un doctor o paciente.
+- Código agregado:
+  from datetime import datetime, date
+  ...
+  # Validar que la fecha no sea anterior a la fecha actual
+  fecha_actual = date.today()
+  if fecha_cita < fecha_actual:
+      return jsonify({"error": "No se puede crear una cita con fecha pasada"}), 400
+  ...
+  # Verificar si ya existe una cita con el mismo doctor, paciente y hora
+  cur.execute("""
+      SELECT idCita FROM cita 
+      WHERE fecha = %s 
+      AND hora = %s 
+      AND (idDoctor = %s OR idPaciente = %s)
+  """, (fecha_cita, hora_cita, data['idDoctor'], data['idPaciente']))
+  cita_existente = cur.fetchone()
+  if cita_existente:
+      cur.close()
+      return jsonify({'error': 'Ya existe una cita programada para ese doctor o paciente en ese horario'}), 400
+
+---
+
+## services/citas/update.py
+- Se agregó validación para evitar actualizar citas a fechas pasadas.
+- Se agregó validación para evitar duplicidad de citas en el mismo horario para un doctor o paciente al editar.
+- Código agregado:
+  from datetime import datetime, date
+  ...
+  # Validar el formato de la fecha y hora
+  try:
+      fecha_cita = datetime.strptime(fecha, '%Y-%m-%d').date()
+      hora_cita = datetime.strptime(hora, '%H:%M').time()
+  except ValueError:
+      return jsonify({"message": "Formato inválido para fecha o hora"}), 400
+
+  # Validar que la fecha no sea anterior a la fecha actual
+  fecha_actual = date.today()
+  if fecha_cita < fecha_actual:
+      return jsonify({"error": "No se puede crear una cita con fecha pasada"}), 400
+
+  # Verificar si ya existe una cita con el mismo doctor o paciente en ese horario
+  cur.execute("""
+      SELECT idCita FROM cita 
+      WHERE fecha = %s 
+      AND hora = %s 
+      AND (idDoctor = %s OR idPaciente = %s)
+      AND idCita != %s
+  """, (fecha_cita, hora_cita, doctor, paciente, idCita))
+  cita_existente = cur.fetchone()
+  if cita_existente:
+      cur.close()
+      return jsonify({'error': 'Ya existe una cita programada para ese doctor o paciente en ese horario'}), 400
+
+---
+
+## services/citas/delete.py
+- Se mejoró el mensaje de éxito al eliminar una cita.
+- Antes:
+  return jsonify({'message': f'Cita con ID {id} eliminada exitosamente'}), 200
+- Ahora:
+  return jsonify({'message': 'Cita eliminada con éxito'}), 200
+
+---
+
+## services/doctores/create.py
+- Se agregó validación para evitar registrar doctores duplicados (mismo nombre y apellidos).
+- Código agregado:
+  cur.execute("""
+      SELECT idDoctor FROM doctor 
+      WHERE nombre = %s AND apellidos = %s
+  """, (nombre, apellidos))
+  doctor_existente = cur.fetchone()
+  if doctor_existente:
+      cur.close()
+      return jsonify({'error': 'Ya existe un doctor con ese nombre y apellidos'}), 400
+
+---
+
+## services/pacientes/create.py
+- Se agregó validación para evitar registrar pacientes duplicados (mismo nombre y apellidos).
+- Código agregado:
+  cur.execute("""
+      SELECT idPaciente FROM paciente 
+      WHERE nombre = %s AND apellidos = %s
+  """, (nombre, apellidos))
+  paciente_existente = cur.fetchone()
+  if paciente_existente:
+      cur.close()
+      return jsonify({'error': 'Ya existe un paciente con ese nombre y apellidos'}), 400
+
+---
+
+## static/css/styles.css
+- Se agregaron animaciones y estilos modernos para botones, formularios, tablas, tarjetas y modales.
+- Ejemplo de código agregado:
+  button, .btn, .btn-action, .btn-save, .btn-cancel {
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+      box-shadow: 0 2px 8px rgba(33, 150, 243, 0.10);
+      border-radius: 8px;
+      font-weight: 600;
+      outline: none;
+  }
+  button:hover, .btn:hover, .btn-action:hover, .btn-save:hover, .btn-cancel:hover {
+      background: linear-gradient(90deg, #2196f3 60%, #2e7d5b 100%);
+      color: #fff;
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 6px 24px rgba(33, 150, 243, 0.18);
+  }
+  /* ...más animaciones y estilos para formularios, tablas, tarjetas y modales... */
+
+---
+
+## static/js/scripts.js, static/js/scriptsdoctores.js, static/js/scriptspacientes.js, static/js/scriptstrata.js
+- Se mejoró la gestión de mensajes de error y éxito en formularios.
+- Ahora se muestra un mensaje de error si ocurre un problema (por ejemplo, duplicados o conflictos de horario) y se limpia el formulario tras un registro exitoso.
+- Ejemplo de código agregado:
+  if (data.error) {
+      alert(data.error);  // Mostrar el mensaje de error si existe
+  } else {
+      alert('Cita creada con éxito');
+      loadCitas();  // Recargar la lista de citas
+      this.reset(); // Limpiar el formulario después de guardar
+  }
+
+---
+

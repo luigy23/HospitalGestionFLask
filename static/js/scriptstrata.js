@@ -1,4 +1,3 @@
-
 const selectTratamiento = document.getElementById('tratamiento');
 const btnAgregarTratamiento = document.getElementById('agregarTratamiento');
 
@@ -102,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.status === 201) {
                 alert('Tratamiento creado con éxito');
                 loadTratamientos();  // Recargar la lista de tratamientos
+                this.reset(); // Limpiar el formulario después de guardar
             } else {
                 alert('Hubo un problema al crear la tratamiento: ' + data.message);
             }

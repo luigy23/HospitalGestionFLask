@@ -13,6 +13,18 @@ def crear_paciente(mysql):  # Ahora mysql es pasado como parámetro
         # Crear una conexión con la base de datos
         cur = mysql.connection.cursor()
         
+        # Verificar si ya existe un paciente con el mismo nombre y apellidos
+        cur.execute("""
+            SELECT idPaciente FROM paciente 
+            WHERE nombre = %s AND apellidos = %s
+        """, (nombre, apellidos))
+        
+        paciente_existente = cur.fetchone()
+        
+        if paciente_existente:
+            cur.close()
+            return jsonify({'error': 'Ya existe un paciente con ese nombre y apellidos'}), 400
+        
         # Insertar los datos en la base de datos
         cur.execute("""
             INSERT INTO paciente (nombre, apellidos, fechaNacimiento, direccion, telefono)

@@ -89,11 +89,12 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .then(response => response.json())
             .then(data => {
-                if (data.message === 'Cita creada con éxito') {
+                if (data.error) {
+                    alert(data.error);  // Mostrar el mensaje de error si existe
+                } else {
                     alert('Cita creada con éxito');
                     loadCitas();  // Recargar la lista de citas
-                } else {
-                    alert('Hubo un problema al crear la cita: ' + data.message);
+                    this.reset(); // Limpiar el formulario después de guardar
                 }
             })
             .catch(error => {
@@ -216,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function () {
             hora,
             proposito,
             estado,
-            paciente: parseInt(paciente), // Asegúrate de que los valores numéricos sean enteros
+            paciente: parseInt(paciente),
             doctor: parseInt(doctor)
         };
 
@@ -227,17 +228,15 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             body: JSON.stringify(data)
         })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error("No se pudo actualizar la cita");
-                }
-            })
+            .then(response => response.json())
             .then(data => {
-                alert(data.message);
-                cerrarModal();
-                loadCitas(); // Recargar la lista de citas
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    alert(data.message);
+                    cerrarModal();
+                    loadCitas();
+                }
             })
             .catch(error => {
                 console.error("Error al actualizar la cita:", error);

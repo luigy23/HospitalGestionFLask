@@ -19,8 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            alert('Doctor agregado con éxito');
-            loadDoctores(); // Recargar la lista de doctores
+            if (data.error) {
+                alert(data.error);  // Mostrar el mensaje de error si existe
+            } else {
+                alert('Doctor agregado con éxito');
+                loadDoctores(); // Recargar la lista de doctores
+                this.reset(); // Limpiar el formulario después de guardar
+            }
         })
         .catch(error => {
             console.error('Error al agregar el doctor:', error);

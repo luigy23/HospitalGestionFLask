@@ -522,3 +522,121 @@ main {
     overflow-y: auto; /* Activa el scroll si el contenido excede */
     padding: 15px;
 }
+
+/* =====================
+   ANIMACIONES Y ESTILOS MODERNOS
+   ===================== */
+
+/* Botones generales */
+button, .btn, .btn-action, .btn-save, .btn-cancel {
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.10);
+    border-radius: 8px;
+    font-weight: 600;
+    outline: none;
+}
+button:hover, .btn:hover, .btn-action:hover, .btn-save:hover, .btn-cancel:hover {
+    background: linear-gradient(90deg, #2196f3 60%, #2e7d5b 100%);
+    color: #fff;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 24px rgba(33, 150, 243, 0.18);
+}
+
+/* Inputs y selects animados */
+input[type="text"], input[type="date"], input[type="time"], select {
+    transition: border 0.3s, box-shadow 0.3s;
+    border-radius: 7px;
+    box-shadow: 0 1px 4px rgba(33, 150, 243, 0.07);
+}
+input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, select:focus {
+    border-color: #2196f3;
+    box-shadow: 0 0 8px #2196f333;
+}
+
+/* Formularios */
+form {
+    background: rgba(255,255,255,0.95);
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(33, 150, 243, 0.08);
+    padding: 28px 24px;
+    margin: 24px auto;
+    max-width: 600px;
+    animation: fadeInUp 0.7s;
+}
+
+/* Tablas con animación y hover */
+table {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(33, 150, 243, 0.07);
+    background: #fff;
+    animation: fadeIn 0.7s;
+}
+table th, table td {
+    transition: background 0.2s, color 0.2s;
+}
+table tbody tr {
+    transition: background 0.2s;
+}
+table tbody tr:hover {
+    background: #e0f2ea;
+}
+
+/* Animación de aparición */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Tarjetas y modales con animación */
+.action-card, .modal-content {
+    transition: box-shadow 0.3s, transform 0.3s;
+    animation: fadeInUp 0.7s;
+}
+.action-card:hover {
+    box-shadow: 0 8px 32px rgba(33, 150, 243, 0.18), 0 1.5px 8px rgba(77, 176, 139, 0.13);
+    transform: translateY(-8px) scale(1.04);
+}
+
+.modal-content {
+    box-shadow: 0 8px 32px rgba(33, 150, 243, 0.18), 0 1.5px 8px rgba(77, 176, 139, 0.13);
+    border-radius: 16px;
+    animation: fadeInUp 0.5s;
+}
+.close-button {
+    transition: color 0.2s, transform 0.2s;
+}
+.close-button:hover {
+    color: #2196f3;
+    transform: rotate(90deg) scale(1.2);
+}
+
+/* Sombra y animación para la barra de navegación */
+header {
+    box-shadow: 0 2px 12px rgba(33, 150, 243, 0.07);
+    animation: fadeIn 0.8s;
+}
+
+/* Animación para los títulos principales */
+h1, h2, h3, .section-title {
+    animation: fadeIn 1s;
+}
+
+/* Animación para las filas nuevas (puedes usar la clase .fade-in-row en JS si lo deseas) */
+.fade-in-row {
+    animation: fadeIn 0.7s;
+}
+
+/* Ajustes extra para que todo luzca más limpio */
+::-webkit-scrollbar {
+    width: 8px;
+    background: #e0f2ea;
+}
+::-webkit-scrollbar-thumb {
+    background: #2e7d5b;
+    border-radius: 8px;
+}

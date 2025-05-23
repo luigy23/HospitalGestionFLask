@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from datetime import datetime
+from datetime import datetime, date
 
 def crear_cita(mysql):
     try:
@@ -17,8 +17,29 @@ def crear_cita(mysql):
         except ValueError:
             return jsonify({"message": "Formato inválido para fecha o hora"}), 400
 
-        # Insertar los datos en la base de datos
+        # Validar que la fecha no sea anterior a la fecha actual
+        fecha_actual = date.today()
+        if fecha_cita < fecha_actual:
+            return jsonify({"error": "No se puede crear una cita con fecha pasada"}), 400
+
+        # Crear una conexión con la base de datos
         cur = mysql.connection.cursor()
+
+        # Verificar si ya existe una cita con el mismo doctor, paciente y hora
+        cur.execute("""
+            SELECT idCita FROM cita 
+            WHERE fecha = %s 
+            AND hora = %s 
+            AND (idDoctor = %s OR idPaciente = %s)
+        """, (fecha_cita, hora_cita, data['idDoctor'], data['idPaciente']))
+        
+        cita_existente = cur.fetchone()
+        
+        if cita_existente:
+            cur.close()
+            return jsonify({'error': 'Ya existe una cita programada para ese doctor o paciente en ese horario'}), 400
+
+        # Insertar los datos en la base de datos
         cur.execute("""
             INSERT INTO cita (fecha, hora, proposito, estado, idPaciente, idDoctor) 
             VALUES (%s, %s, %s, %s, %s, %s)

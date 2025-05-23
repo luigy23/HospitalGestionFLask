@@ -11,6 +11,6 @@ def eliminar_cita(idCita, mysql):
         if cursor.rowcount == 0:
             return jsonify({'error': 'Cita no encontrada'}), 404
 
-        return jsonify({'message': f'Cita con ID {id} eliminada exitosamente'}), 200
+        return jsonify({'message': 'Cita eliminada con éxito'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
